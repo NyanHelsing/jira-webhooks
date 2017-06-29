@@ -26,7 +26,8 @@ SECRET_KEY = 'a44^glf!988&=*@woqj)y=!%yj*gy_3nqarri267n3rtn6v_31'
 DEBUG = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 ALLOWED_HOSTS = [
-    'jira-webhooks.herokuapp.com'
+    'jira-webhooks.herokuapp.com',
+    'localhost'
 ]
 
 

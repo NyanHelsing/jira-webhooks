@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import os
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -13,7 +14,6 @@ jira = JIRA(
 
 @api_view(['GET'])
 def api_root(request, format=None):
-
     return Response({
         'Hello': 'Goodbye'
     })
@@ -21,7 +21,12 @@ def api_root(request, format=None):
 
 @api_view(['POST'])
 def assign_to_josh(request, format=None):
-
+    new_issue = jira.create_issue(
+        project='LABS',
+        summary='New issue from jira-python',
+        description='Look into this one',
+        issuetype={'name': 'Bug'}
+    )
     return Response('HELLO');
 
 
