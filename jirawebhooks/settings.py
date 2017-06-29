@@ -25,7 +25,9 @@ SECRET_KEY = 'a44^glf!988&=*@woqj)y=!%yj*gy_3nqarri267n3rtn6v_31'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'jira-webhooks.herokuapp.com'
+]
 
 
 # Application definition
