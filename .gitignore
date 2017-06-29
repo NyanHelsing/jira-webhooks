@@ -1,3 +1,5 @@
 jirawebhooks/static/
 *.pyc
 __pycache__
+.env
+.out
