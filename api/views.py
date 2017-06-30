@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from jira import JIRA
+from gitsome.lib.github3 import GitHub
 
 
 jira = JIRA(
@@ -14,11 +15,31 @@ jira = JIRA(
 )
 
 
+gh = GitHub(token=os.environ['GITHUB_TOKEN'])
+
+
+project_mappings = {
+    'SIDASH': {
+        'owner': 'cos-labs',
+        'repository_name': 'share-analytics'
+    }
+}
+
+
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
         'Hello': 'Goodbye'
     })
+
+
+@api_view(['POST'])
+def jira_issue_created(request, format=None):
+    issue = jira.issue(request.data['issue']['id'])
+    mapping = project_mappings[issue.fields.project.key]
+    repo = gh.repository(mapping['owner'], mapping['repository_name'])
+    repo.create_issue(issue.fields.summary + ' [' + issue.key + ']', issue.fields.description)
+    return Response('SUCCESS')
 
 
 @api_view(['POST'])

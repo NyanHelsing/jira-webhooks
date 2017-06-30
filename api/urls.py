@@ -10,5 +10,6 @@ from api import views
 
 urlpatterns = format_suffix_patterns([
     url(r'^$', views.api_root),
-    url(r'^assign_to_josh$', views.assign_to_josh)
+    url(r'^assign_to_josh$', views.assign_to_josh),
+    url(r'^jira_issue_created', views.jira_issue_created)
 ])
